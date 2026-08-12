@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HIGSGEN Studio — キャラクター動画生成</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">🎬 <strong>HIGSGEN</strong> <span class="sub">Studio</span></div>
+    <select id="project-select" class="project-select" title="プロジェクト切替"></select>
+    <div class="topbar-right">
+      <div id="balance" class="balance" title="Higgsfield クレジット残高（パイプライン実行時に更新）">残高 —</div>
+      <button id="btn-new" class="btn primary">＋ 新規</button>
+    </div>
+  </header>
+
+  <main class="editor">
+    <aside id="browser" class="browser panel">
+      <div class="panel-title">📁 ライブラリ</div>
+      <div id="browser-body" class="panel-body"></div>
+    </aside>
+
+    <section id="preview" class="preview panel">
+      <div class="panel-title" id="preview-title">プレビュー</div>
+      <div id="preview-body" class="preview-body"></div>
+    </section>
+
+    <aside id="ai-panel" class="ai-panel panel">
+      <div class="panel-title">🤖 AI アクティビティ</div>
+      <div id="ai-body" class="panel-body"></div>
+    </aside>
+
+    <section id="timeline" class="timeline panel">
+      <div class="panel-title" id="timeline-title">タイムライン</div>
+      <div id="timeline-body" class="timeline-body"></div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal" hidden>
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2>新規プロジェクト</h2>
+        <button id="modal-close" class="btn">✕</button>
+      </div>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

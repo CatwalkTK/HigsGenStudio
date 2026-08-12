@@ -1,0 +1,14 @@
+# 生成された動画プロジェクト（成果物・大容量メディア）
+projects/*
+!projects/.gitkeep
+
+# クレジット残高キャッシュ（アカウント情報）
+state/balance.json
+
+# macOS
+.DS_Store
+._*
+
+# Node
+node_modules/
+npm-debug.log*
