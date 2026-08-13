@@ -39,20 +39,6 @@ A 30-second short film (same face and outfit in every shot, with spoken dialogue
 | Character designer, storyboard artist | **Codex CLI** | Character design documents, storyboards (shot breakdown) |
 | Generation engine | **Higgsfield MCP** | Character sheets, video clips, music and narration |
 
-The workflow is modelled on the multi-agent production flow of the AI anime service **OiiOii**.
-OiiOii focuses on anime; HIGSGEN also covers live-action and 3D.
-
-| OiiOii agent | HIGSGEN owner |
-|--------------|---------------|
-| 🎨 Art director | Claude (Phase 0 — brief and style) |
-| 📝 Screenwriter | Claude (Phase 1 — story) |
-| 🧑‍🎨 Character designer | Codex design → Higgsfield character sheet (Phase 2) |
-| 🎬 Scene builder (storyboard) | Codex (Phase 3) |
-| 🎥 Animator | Claude prompts → Higgsfield generation (Phase 4-5) |
-| 🎵 Sound engineer | Higgsfield audio generation (Phase 5) |
-| ✂️ Editor | Claude + ffmpeg / timeline UI (Phase 6) |
-| Character asset management | Canonical description block + character-sheet reference |
-
 ---
 
 ## Video engines

@@ -41,20 +41,6 @@ Un court métrage de 30 secondes (même visage et même tenue dans tous les plan
 | Character designer, storyboardeur | **Codex CLI** | Documents de conception des personnages, storyboards (découpage) |
 | Moteur de génération | **Higgsfield MCP** | Feuilles de personnage, clips vidéo, musique et narration |
 
-Le flux s'inspire de la production multi-agents du service d'animation par IA **OiiOii**.
-OiiOii se limite à l'animé ; HIGSGEN couvre aussi la prise de vue réelle et la 3D.
-
-| Agent OiiOii | Responsable HIGSGEN |
-|--------------|---------------------|
-| 🎨 Directeur artistique | Claude (phase 0 — brief et style) |
-| 📝 Scénariste | Claude (phase 1 — récit) |
-| 🧑‍🎨 Character designer | Conception Codex → feuille de personnage Higgsfield (phase 2) |
-| 🎬 Constructeur de scènes (storyboard) | Codex (phase 3) |
-| 🎥 Animateur | Prompts Claude → génération Higgsfield (phases 4-5) |
-| 🎵 Ingénieur du son | Génération audio Higgsfield (phase 5) |
-| ✂️ Monteur | Claude + ffmpeg / interface timeline (phase 6) |
-| Gestion des ressources du personnage | Bloc de description canonique + référence à la feuille de personnage |
-
 ---
 
 ## Moteurs vidéo
