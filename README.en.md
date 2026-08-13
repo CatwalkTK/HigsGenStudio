@@ -31,6 +31,16 @@ A 30-second short film (same face and outfit in every shot, with spoken dialogue
 
 ---
 
+## 🏢 Enterprise edition
+
+On top of everything above, the Enterprise edition ships **Cinema Studio 4-level features and beyond**:
+
+- **Camera control**: precise, per-shot camera-work control
+- **Lip sync**: mouth movement synchronized to dialogue
+- Plus other directing features at Cinema Studio 4 level and above
+
+---
+
 ## Who does what
 
 | Role | Owner | Responsibilities |

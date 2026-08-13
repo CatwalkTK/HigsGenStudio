@@ -33,6 +33,16 @@ Un court métrage de 30 secondes (même visage et même tenue dans tous les plan
 
 ---
 
+## 🏢 Édition Entreprise
+
+En plus de tout ce qui précède, l'édition Entreprise embarque des **fonctionnalités de niveau Cinema Studio 4 et au-delà** :
+
+- **Contrôle caméra** : pilotage précis des mouvements de caméra plan par plan
+- **Synchronisation labiale (lip sync)** : mouvements de bouche synchronisés avec les dialogues
+- Ainsi que d'autres fonctions de mise en scène de niveau Cinema Studio 4 et supérieur
+
+---
+
 ## Répartition des rôles
 
 | Rôle | Responsable | Missions |
