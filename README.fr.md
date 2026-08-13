@@ -15,6 +15,14 @@ Brief → Récit → Conception du personnage → Storyboard → Prompts → Gé
 Un court métrage de 30 secondes (même visage et même tenue dans tous les plans, dialogues parlés)
 ```
 
+![HIGSGEN Cinema Studio — montage du projet voyage à Okinawa](docs/screenshot-studio.png)
+
+> **L'exemple ci-dessus, réellement produit.** Bibliothèque de médias à gauche, aperçu 16:9 au
+> centre, panneaux Inspector / Cinema / AI Director / Review à droite. La timeline en bas aligne
+> 6 scènes sur 28,3 secondes, avec **V1 (vidéo), A1 (dialogues) et A2 (musique et bruitages)**
+> scène par scène. Chaque clip affiche son nom, sa durée et son modèle de génération
+> (seedance-2.5), et le solde de crédits reste visible dans l'en-tête.
+
 ---
 
 ## Points forts

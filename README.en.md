@@ -14,6 +14,14 @@ Brief → Story → Character design → Storyboard → Prompts → Generation �
 A 30-second short film (same face and outfit in every shot, with spoken dialogue)
 ```
 
+![HIGSGEN Cinema Studio — editing the Okinawa trip project](docs/screenshot-studio.png)
+
+> **The example above, actually produced.** Media library on the left, 16:9 preview in the centre,
+> and Inspector / Cinema / AI Director / Review panels on the right. The timeline below holds
+> 6 scenes across 28.3 seconds, with **V1 (video), A1 (dialogue) and A2 (music & SFX)** aligned
+> scene by scene. Every clip shows its scene name, duration and generation model (seedance-2.5),
+> and the remaining credit balance stays visible in the header.
+
 ---
 
 ## Highlights
