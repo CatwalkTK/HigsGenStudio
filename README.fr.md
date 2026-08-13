@@ -41,6 +41,8 @@ En plus de tout ce qui précède, l'édition Entreprise embarque des **fonctionn
 - **Synchronisation labiale (lip sync)** : mouvements de bouche synchronisés avec les dialogues
 - Ainsi que d'autres fonctions de mise en scène de niveau Cinema Studio 4 et supérieur
 
+Intéressé par l'édition Entreprise ? Contactez-nous via **[https://branbit.jp](https://branbit.jp)**.
+
 ---
 
 ## Répartition des rôles

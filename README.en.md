@@ -39,6 +39,8 @@ On top of everything above, the Enterprise edition ships **Cinema Studio 4-level
 - **Lip sync**: mouth movement synchronized to dialogue
 - Plus other directing features at Cinema Studio 4 level and above
 
+Interested in the Enterprise edition? Contact us at **[https://branbit.jp](https://branbit.jp)**.
+
 ---
 
 ## Who does what
