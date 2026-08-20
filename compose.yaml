@@ -1,0 +1,16 @@
+services:
+  higsgen:
+    build: .
+    ports:
+      - "${HIGSGEN_PORT:-4649}:4649"
+    environment:
+      PORT: 4649
+      HIGSGEN_API_KEY: ${HIGSGEN_API_KEY:?set HIGSGEN_API_KEY in .env}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:?set ANTHROPIC_API_KEY in .env}
+      HIGSGEN_SECURE_COOKIE: ${HIGSGEN_SECURE_COOKIE:-false}
+    volumes:
+      - ./projects:/app/projects
+      - ./state:/app/state
+      - ${CLAUDE_CONFIG_DIR:-${HOME}/.claude}:/claude-config:ro
+    init: true
+    restart: unless-stopped

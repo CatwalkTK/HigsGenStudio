@@ -6,6 +6,12 @@ import { createReadStream, createWriteStream, existsSync } from 'node:fs';
 import { spawn } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {
+  clearSessionCookie,
+  isAuthorized,
+  isValidApiKey,
+  sessionCookie,
+} from './auth.mjs';
 
 const UI_DIR = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(UI_DIR, '..');
@@ -14,6 +20,12 @@ const TEMPLATES_DIR = path.join(ROOT, '.claude', 'skills', 'higsgen', 'templates
 const PUBLIC_DIR = path.join(UI_DIR, 'public');
 const BALANCE_FILE = path.join(ROOT, 'state', 'balance.json');
 const PORT = Number(process.env.PORT ?? 4649);
+const API_KEY = process.env.HIGSGEN_API_KEY;
+const SECURE_COOKIE = process.env.HIGSGEN_SECURE_COOKIE === 'true';
+
+if (!API_KEY || API_KEY.length < 16) {
+  throw new Error('HIGSGEN_API_KEY must be set to at least 16 characters');
+}
 
 // エンジン定義（Higgsfield MCP の実モデル仕様に基づく。1 生成 = 1 本の動画）
 const ENGINES = {
@@ -571,6 +583,24 @@ const handleApi = async (req, res, url) => {
 const server = createServer(async (req, res) => {
   try {
     const url = new URL(req.url, `http://localhost:${PORT}`);
+
+    if (url.pathname === '/api/session') {
+      if (req.method === 'POST') {
+        const body = await readBody(req);
+        if (!isValidApiKey(body.apiKey, API_KEY)) return json(res, 401, { error: 'APIキーが正しくありません' });
+        res.setHeader('Set-Cookie', sessionCookie(API_KEY, SECURE_COOKIE));
+        return json(res, 200, { ok: true });
+      }
+      if (req.method === 'GET') return json(res, isAuthorized(req, API_KEY) ? 200 : 401, { authenticated: isAuthorized(req, API_KEY) });
+      if (req.method === 'DELETE') {
+        res.setHeader('Set-Cookie', clearSessionCookie(SECURE_COOKIE));
+        return json(res, 200, { ok: true });
+      }
+    }
+
+    if ((url.pathname.startsWith('/api/') || url.pathname.startsWith('/files/')) && !isAuthorized(req, API_KEY)) {
+      return json(res, 401, { error: 'APIキー認証が必要です' });
+    }
 
     if (url.pathname.startsWith('/api/')) return await handleApi(req, res, url);
 

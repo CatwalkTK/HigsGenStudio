@@ -165,19 +165,39 @@ Phase 6  編集（タイムライン UI / ffmpeg）→ out/         音声合成
 
 ### 必要なもの
 
-- **Node.js 18+** — UI サーバー（外部依存パッケージなし）
-- **Claude Code** — パイプラインの実行環境
+- **Docker / Docker Compose** — 推奨の実行環境
+- **Anthropic API キー** — コンテナ内の Claude Code がパイプラインを実行するために使用
 - **Higgsfield MCP** — Claude Code に接続済みであること（クレジット残高が必要）
-- **Codex CLI**（`codex`）— 任意。なくても動作（Claude が代行するフォールバックあり）
-- **ffmpeg / ffprobe** — タイムライン編集・書き出し・音声分離に使用
+- **HIGSGEN API キー** — Studio の API・プロジェクト素材を保護する16文字以上の任意の秘密値
 
-### 起動
+### Docker で起動（推奨）
 
 ```bash
-git clone https://github.com/CatwalkTK/HigsGenSutudio.git
-cd HigsGenSutudio
+git clone https://github.com/CatwalkTK/HigsGenStudio.git
+cd HigsGenStudio
+cp .env.example .env
+# .env に HIGSGEN_API_KEY と ANTHROPIC_API_KEY を設定
+docker compose up --build -d
+```
+
+http://localhost:4649 を開き、`.env` の `HIGSGEN_API_KEY` でログインします。Claude Code・
+ffmpeg / ffprobe はイメージに同梱されます。`projects/` と `state/` はホスト側へ永続化され、
+Higgsfield MCP の設定は既定で `~/.claude` から読み取り専用で取り込まれます。
+
+### Node.js で直接起動
+
+Node.js 18+、Claude Code、ffmpeg / ffprobe を用意してから実行します。
+
+```bash
+export HIGSGEN_API_KEY='16文字以上のランダムな値'
+export ANTHROPIC_API_KEY='sk-ant-...'
 node ui/server.mjs        # → http://localhost:4649
 ```
+
+外部クライアントは `Authorization: Bearer <HIGSGEN_API_KEY>` でも `/api/*` を利用できます。
+ブラウザ版はAPIキーを HttpOnly / SameSite Cookie のセッションへ交換し、URLや
+`localStorage` にキーを保存しません。HTTPSリバースプロキシ配下では
+`HIGSGEN_SECURE_COOKIE=true` を設定してください。
 
 ---
 
@@ -185,7 +205,7 @@ node ui/server.mjs        # → http://localhost:4649
 
 ### 方法 1: UI から（推奨）
 
-1. `node ui/server.mjs` で http://localhost:4649 を開く
+1. http://localhost:4649 を開き、HIGSGEN API キーでログイン
 2. 「＋新規」でプロジェクト作成（作りたい動画・エンジン・スタイル・セリフ有無を入力）
 3. 表示される指示文をコピーして Claude Code に貼り付け → パイプラインが Phase 1 から走る
 4. キャラクター・絵コンテが生成されたら UI で**承認**（または修正点を書いて差し戻し）

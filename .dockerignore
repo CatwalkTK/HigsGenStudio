@@ -1,0 +1,9 @@
+.git
+.env
+projects/*
+!projects/.gitkeep
+state/
+node_modules/
+npm-debug.log*
+.DS_Store
+._*

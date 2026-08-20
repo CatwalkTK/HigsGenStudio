@@ -7,6 +7,19 @@
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+  <div id="login" class="login" hidden>
+    <form id="login-form" class="login-card">
+      <div class="login-mark">🎬</div>
+      <h1>HIGSGEN Studio</h1>
+      <p>続行するにはAPIキーを入力してください。</p>
+      <label class="field">
+        <span class="name">HIGSGEN API KEY</span>
+        <input id="login-key" type="password" autocomplete="current-password" minlength="16" required autofocus>
+      </label>
+      <button class="btn primary" type="submit">Studioを開く</button>
+      <p id="login-error" class="login-error" aria-live="polite"></p>
+    </form>
+  </div>
   <header class="topbar">
     <div class="brand">🎬 <strong>HIGSGEN</strong> <span class="sub">Studio</span></div>
     <select id="project-select" class="project-select" title="プロジェクト切替"></select>

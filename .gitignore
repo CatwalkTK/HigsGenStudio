@@ -12,3 +12,6 @@ state/balance.json
 # Node
 node_modules/
 npm-debug.log*
+
+# APIキーなどのローカル環境変数
+.env

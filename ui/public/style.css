@@ -438,6 +438,32 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: var(--a
 .tl-clip.bgm { background: #3a3a56; }
 
 /* ===== モーダル ===== */
+.login {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 50% 30%, #1d2a46, #080b12 65%);
+}
+.login[hidden] { display: none; }
+.login-card {
+  width: min(380px, calc(100vw - 40px));
+  padding: 34px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(20, 24, 34, .96);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .45);
+  text-align: center;
+}
+.login-mark { font-size: 42px; }
+.login-card h1 { margin: 8px 0; font-size: 22px; }
+.login-card p { color: var(--muted); }
+.login-card .field { display: block; margin: 24px 0 14px; text-align: left; }
+.login-card input { width: 100%; box-sizing: border-box; }
+.login-card .btn { width: 100%; }
+.login-card .login-error { min-height: 18px; margin: 12px 0 0; color: var(--err); }
+
 .modal {
   position: fixed;
   inset: 0;

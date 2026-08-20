@@ -17,8 +17,21 @@ const state = {
 const api = async (path, opts = {}) => {
   const res = await fetch(path, { headers: { 'Content-Type': 'application/json' }, ...opts });
   const data = await res.json().catch(() => ({}));
+  if (res.status === 401 && path !== '/api/session') showLogin();
   if (!res.ok) throw new Error(data.error ?? `HTTP ${res.status}`);
   return data;
+};
+
+const showLogin = () => {
+  $('#login').hidden = false;
+  $('#login-key')?.focus();
+};
+
+const authenticate = async () => {
+  const res = await fetch('/api/session');
+  if (res.ok) return true;
+  showLogin();
+  return false;
 };
 
 const esc = (s) =>
@@ -778,6 +791,21 @@ const route = async () => {
 };
 
 const init = async () => {
+  $('#login-form').addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    const error = $('#login-error');
+    error.textContent = '';
+    try {
+      await api('/api/session', { method: 'POST', body: JSON.stringify({ apiKey: $('#login-key').value }) });
+      $('#login-key').value = '';
+      $('#login').hidden = true;
+      await startStudio();
+    } catch (e) { error.textContent = e.message; }
+  });
+  if (await authenticate()) await startStudio();
+};
+
+const startStudio = async () => {
   const { engines, styles } = await api('/api/engines');
   state.engines = engines;
   state.styles = styles;
