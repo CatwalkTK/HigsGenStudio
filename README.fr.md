@@ -170,19 +170,39 @@ Phase 6  Montage (timeline / ffmpeg)  → out/           mixage audio, ajustemen
 
 ### Prérequis
 
-- **Node.js 18+** — serveur de l'interface (aucune dépendance externe)
-- **Claude Code** — exécute le pipeline
+- **Docker / Docker Compose** — environnement d'exécution recommandé
+- **Clé API Anthropic** — utilisée par Claude Code dans le conteneur pour exécuter le pipeline
 - **Higgsfield MCP** — connecté à Claude Code (crédits nécessaires)
-- **Codex CLI** (`codex`) — facultatif ; Claude prend le relais s'il est indisponible
-- **ffmpeg / ffprobe** — montage timeline, export et séparation audio
+- **Clé API HIGSGEN** — secret d'au moins 16 caractères protégeant l'API Studio et les ressources des projets
 
-### Démarrage
+### Démarrage avec Docker (recommandé)
 
 ```bash
-git clone https://github.com/CatwalkTK/HigsGenSutudio.git
-cd HigsGenSutudio
+git clone https://github.com/CatwalkTK/HigsGenStudio.git
+cd HigsGenStudio
+cp .env.example .env
+# Définissez HIGSGEN_API_KEY et ANTHROPIC_API_KEY dans .env
+docker compose up --build -d
+```
+
+Ouvrez http://localhost:4649 et connectez-vous avec la `HIGSGEN_API_KEY` du fichier `.env`.
+Claude Code, ffmpeg et ffprobe sont inclus dans l'image. `projects/` et `state/` persistent sur l'hôte ;
+la configuration Higgsfield MCP est importée en lecture seule depuis `~/.claude` par défaut.
+
+### Démarrage direct avec Node.js
+
+Installez Node.js 18+, Claude Code, ffmpeg et ffprobe, puis lancez :
+
+```bash
+export HIGSGEN_API_KEY='un-secret-aleatoire-de-16-caracteres-minimum'
+export ANTHROPIC_API_KEY='sk-ant-...'
 node ui/server.mjs        # → http://localhost:4649
 ```
+
+Les clients externes peuvent aussi appeler `/api/*` avec
+`Authorization: Bearer <HIGSGEN_API_KEY>`. Le navigateur échange la clé contre un cookie de session
+HttpOnly et SameSite, sans la stocker dans l'URL ni dans `localStorage`. Derrière un reverse proxy
+HTTPS, définissez `HIGSGEN_SECURE_COOKIE=true`.
 
 ---
 
@@ -190,7 +210,7 @@ node ui/server.mjs        # → http://localhost:4649
 
 ### Option 1 — depuis l'interface (recommandé)
 
-1. Lancez `node ui/server.mjs` et ouvrez http://localhost:4649
+1. Ouvrez http://localhost:4649 et connectez-vous avec la clé API HIGSGEN
 2. Cliquez sur « ＋Nouveau » et renseignez la demande, le moteur, le style et la présence de dialogues
 3. Copiez la consigne affichée dans Claude Code — le pipeline démarre à la phase 1
 4. Lorsque les personnages et le storyboard apparaissent, **validez-les** dans l'interface
